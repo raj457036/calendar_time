@@ -3,6 +3,15 @@ import 'package:intl/intl.dart';
 /// Main class
 class CalendarTime {
   DateTime _date;
+  final String todayTextMessage;
+  final String nextWeekTextMessage;
+final String tomorrowTextMessage;
+  
+  
+  
+  final String yesterdayTextMessage;
+  final String lastWeekTextMessage;
+  
 
   // Get the dateTime object used by this CalendarTime
   DateTime get toDate => _date;
@@ -168,7 +177,7 @@ class CalendarTime {
   /// Create a calendar time object by passing in a date
   /// Not passing in a date will create a CalendarTime at the present date
   ///
-  CalendarTime([this._date]) {
+  CalendarTime([this._date],{this.todayTextMessage,this.lastWeekTextMessage,this.nextWeekTextMessage,this.todayTextMessage,this.tomorrowTextMessage}) {
     _date ??= DateTime.now();
   }
 
@@ -183,15 +192,15 @@ class CalendarTime {
     final String fullDateTime = "$fullDate $fullTime";
 
     if (isToday) {
-      return 'Today at $time';
+      return todayTextMessage+'$time';
     } else if (isTomorrow) {
-      return 'Tomorrow at $time';
+      return tomorrowTextMessage+'$time';
     } else if (isNextWeek) {
-      return '$day at $time';
+      return '$day nextWeekTextMessage $time';
     } else if (isYesterday) {
-      return 'Yesterday at $time';
+      return yesterdayTextMessage +$time';
     } else if (isLastWeek) {
-      return 'Last $day at $time';
+      return lastWeekTextMessage $day nextWeekTextMessage $time';
     } else {
       return fullDateTime;
     }
