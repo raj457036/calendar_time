@@ -177,7 +177,7 @@ final String tomorrowTextMessage;
   /// Create a calendar time object by passing in a date
   /// Not passing in a date will create a CalendarTime at the present date
   ///
-  CalendarTime([this._date],{this.todayTextMessage,this.lastWeekTextMessage,this.nextWeekTextMessage,this.todayTextMessage,this.tomorrowTextMessage}) {
+  CalendarTime([this._date,{this.todayTextMessage,this.lastWeekTextMessage,this.nextWeekTextMessage,this.todayTextMessage,this.tomorrowTextMessage}],) {
     _date ??= DateTime.now();
   }
 
