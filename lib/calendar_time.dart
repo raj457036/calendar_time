@@ -195,15 +195,15 @@ class CalendarTime {
     final String fullDateTime = "$fullDate $fullTime";
 
     if (isToday) {
-      return todayTextMessage + '$time';
+      return '$todayTextMessage $time';
     } else if (isTomorrow) {
-      return tomorrowTextMessage + '$time';
+      return '$tomorrowTextMessage $time';
     } else if (isNextWeek) {
-      return '$day' + nextWeekTextMessage + '$time';
+      return '$day $nextWeekTextMessage $time';
     } else if (isYesterday) {
-      return yesterdayTextMessage + '$time';
+      return '$yesterdayTextMessage $time';
     } else if (isLastWeek) {
-      return lastWeekTextMessage + '$day' + nextWeekTextMessage + '$time';
+      return '$lastWeekTextMessage $day $nextWeekTextMessage $time';
     } else {
       return fullDateTime;
     }
