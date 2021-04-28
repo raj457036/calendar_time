@@ -2,24 +2,30 @@ import 'package:intl/intl.dart';
 
 /// Main class
 class CalendarTime {
-  late DateTime _date;
+  DateTime date;
+  final String todayTextMessage;
+  final String nextWeekTextMessage;
+  final String tomorrowTextMessage;
+
+  final String yesterdayTextMessage;
+  final String lastWeekTextMessage;
 
   // Get the dateTime object used by this CalendarTime
-  DateTime get toDate => _date;
+  DateTime get toDate => date;
 
   /// Adds a duration to the current DateTime
   ///
-  DateTime add(Duration duration) => _date.add(duration);
+  DateTime add(Duration duration) => date.add(duration);
 
   /// Subtract a duration from the current DateTime
   ///
-  DateTime subtract(Duration duration) => _date.subtract(duration);
+  DateTime subtract(Duration duration) => date.subtract(duration);
 
   /// Returns this DateTime value in the local time zone.
   ///
   /// Returns [this] if it is already in the local time zone.
   ///
-  DateTime get dateLocal => _date.toLocal();
+  DateTime get dateLocal => date.toLocal();
 
   /// Specify the format for times when outputting
   /// Specify it as [DateFormat.<skeleton>]
@@ -168,8 +174,14 @@ class CalendarTime {
   /// Create a calendar time object by passing in a date
   /// Not passing in a date will create a CalendarTime at the present date
   ///
-  CalendarTime([_date]) {
-    this._date = _date ??= DateTime.now();
+  CalendarTime(
+      {this.todayTextMessage,
+      this.nextWeekTextMessage,
+      this.tomorrowTextMessage,
+      this.yesterdayTextMessage,
+      this.lastWeekTextMessage,
+      this.date}) {
+    date ??= DateTime.now();
   }
 
   /// Convert the date into a human readable representation of a time
@@ -183,15 +195,15 @@ class CalendarTime {
     final String fullDateTime = "$fullDate $fullTime";
 
     if (isToday) {
-      return 'Today at $time';
+      return '$todayTextMessage $time';
     } else if (isTomorrow) {
-      return 'Tomorrow at $time';
+      return '$tomorrowTextMessage $time';
     } else if (isNextWeek) {
-      return '$day at $time';
+      return '$day $nextWeekTextMessage $time';
     } else if (isYesterday) {
-      return 'Yesterday at $time';
+      return '$yesterdayTextMessage $time';
     } else if (isLastWeek) {
-      return 'Last $day at $time';
+      return '$lastWeekTextMessage $day $nextWeekTextMessage $time';
     } else {
       return fullDateTime;
     }
@@ -363,7 +375,7 @@ class CalendarTime {
   /// If you want the start of the day of the CalendarTime object use [startOfDay]
   ///
   /// ie. set the current date to 12:00am
-  DateTime get startOfDay => DateTime(_date.year, _date.month, _date.day);
+  DateTime get startOfDay => DateTime(date.year, date.month, date.day);
 
   /// Get the time at the start of yesterday
   /// note this is based on the current time, not the time passed into the [CalendarTime]
@@ -385,7 +397,7 @@ class CalendarTime {
   /// Get the time at the end of the day given to the CalendarTime obejct
   ///
   DateTime get endOfDay =>
-      DateTime(_date.year, _date.month, _date.day, 23, 59, 59, 999, 999);
+      DateTime(date.year, date.month, date.day, 23, 59, 59, 999, 999);
 
   /// Get the time at the end of tomorrow
   /// note this is based on the current time, not the time passed into the [CalendarTime]
@@ -458,13 +470,12 @@ class CalendarTime {
       [String? pattern, String? locale]) {
     final format = DateFormat(pattern, locale);
     final dateTime = format.parse(input);
-    return CalendarTime(dateTime);
+    return CalendarTime(date: dateTime);
   }
 
   bool isSameDayAs(DateTime comparisonDate) {
-    return (_date.toLocal()).toLocal().year ==
-            (comparisonDate.toLocal()).year &&
-        (_date.toLocal()).month == (comparisonDate.toLocal()).month &&
-        (_date.toLocal()).day == (comparisonDate.toLocal()).day;
+    return (date.toLocal()).toLocal().year == (comparisonDate.toLocal()).year &&
+        (date.toLocal()).month == (comparisonDate.toLocal()).month &&
+        (date.toLocal()).day == (comparisonDate.toLocal()).day;
   }
 }
