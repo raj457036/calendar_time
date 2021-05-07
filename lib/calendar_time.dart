@@ -474,8 +474,8 @@ class CalendarTime {
   }
 
   bool isSameDayAs(DateTime comparisonDate) {
-    return (date.toLocal()).toLocal().year == (comparisonDate.toLocal()).year &&
-        (date.toLocal()).month == (comparisonDate.toLocal()).month &&
-        (date.toLocal()).day == (comparisonDate.toLocal()).day;
+    return (date?.toLocal())?.toLocal()?.year == (comparisonDate.toLocal()).year &&
+        (date?.toLocal())?.month == (comparisonDate.toLocal()).month &&
+        (date?.toLocal())?.day == (comparisonDate.toLocal()).day;
   }
 }
