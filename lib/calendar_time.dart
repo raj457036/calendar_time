@@ -180,7 +180,7 @@ class CalendarTime {
       this.tomorrowTextMessage,
       this.yesterdayTextMessage,
       this.lastWeekTextMessage,
-       this.date = DateTime.now()}) {
+      required this.date}) {
     
   }
 
