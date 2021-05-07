@@ -3,12 +3,12 @@ import 'package:intl/intl.dart';
 /// Main class
 class CalendarTime {
   DateTime date;
-  final String todayTextMessage;
-  final String nextWeekTextMessage;
-  final String tomorrowTextMessage;
+  final String? todayTextMessage;
+  final String? nextWeekTextMessage;
+  final String? tomorrowTextMessage;
 
-  final String yesterdayTextMessage;
-  final String lastWeekTextMessage;
+  final String? yesterdayTextMessage;
+  final String? lastWeekTextMessage;
 
   // Get the dateTime object used by this CalendarTime
   DateTime get toDate => date;
@@ -180,7 +180,7 @@ class CalendarTime {
       this.tomorrowTextMessage,
       this.yesterdayTextMessage,
       this.lastWeekTextMessage,
-      this.date}) {
+      required this.date}) {
     date ??= DateTime.now();
   }
 
