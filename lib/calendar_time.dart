@@ -2,7 +2,7 @@ import 'package:intl/intl.dart';
 
 /// Main class
 class CalendarTime {
-  DateTime? date;
+  DateTime date;
   final String? todayTextMessage;
   final String? nextWeekTextMessage;
   final String? tomorrowTextMessage;
@@ -180,8 +180,8 @@ class CalendarTime {
       this.tomorrowTextMessage,
       this.yesterdayTextMessage,
       this.lastWeekTextMessage,
-      required this.date}) {
-    date ??= DateTime.now();
+       this.date = DateTime.now()}) {
+    
   }
 
   /// Convert the date into a human readable representation of a time
@@ -474,8 +474,8 @@ class CalendarTime {
   }
 
   bool isSameDayAs(DateTime comparisonDate) {
-    return (date?.toLocal())?.toLocal()?.year == (comparisonDate.toLocal()).year &&
-        (date?.toLocal())?.month == (comparisonDate.toLocal()).month &&
-        (date?.toLocal())?.day == (comparisonDate.toLocal()).day;
+    return (date.toLocal()).toLocal().year == (comparisonDate.toLocal()).year &&
+        (date.toLocal()).month == (comparisonDate.toLocal()).month &&
+        (date.toLocal()).day == (comparisonDate.toLocal()).day;
   }
 }
