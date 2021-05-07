@@ -2,7 +2,7 @@ import 'package:intl/intl.dart';
 
 /// Main class
 class CalendarTime {
-  DateTime date;
+  DateTime? date;
   final String? todayTextMessage;
   final String? nextWeekTextMessage;
   final String? tomorrowTextMessage;
